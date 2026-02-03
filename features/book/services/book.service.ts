@@ -1,11 +1,12 @@
 import Book from "../models/BookModel";
 import { buildDaysAgo } from "../utils/buildDaysAgo";
 import Review from "../models/ReviewModel";
+import mongoose from "mongoose";
 
 export const getAllBooks = async (search = "") => {
   const products = await Book.aggregate([
     { $match: { title: { $regex: search, $options: "i" } } },
-    { $sample: { size: 100 } },
+    { $sample: { size: 100 } }
   ]);
 
   const bookTitles = products.map((p) => p.title);
@@ -35,8 +36,10 @@ export const getBookDetail = async (id: string) => {
     throw new Error("Book not found");
   }
 
+  const objectId = new mongoose.Types.ObjectId(id);
+
   const relatedBooks = await Book.find({
-    _id: { $ne: id },
+    _id: { $ne: objectId },
   })
     .limit(8)
     .lean();
