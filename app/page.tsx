@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import BookCard from "@/features/book/components/BookCard";
 import { getBestSellerBooks, getNewBooks } from "@/features/book/services/book.service";
 import connectDB from "@/lib/db";
-import Link from "next/link";
 
 export default async function Home() {
   await connectDB()

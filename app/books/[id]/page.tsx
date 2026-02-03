@@ -55,7 +55,7 @@ export default function page() {
               <br></br>
               <p className="text-3xl text-green-800">{book?.price} VND</p>
               <section className="flex flex-col mt-5">
-                <label className="text-2xl font-semibold">Quantity:</label>
+                <label className="text-2xl">Quantity:</label>
                 <div className="border-collapse mt-5 flex gap-2">
                   <button
                     onClick={() => setQuantity((prev) => prev - 1)}
@@ -80,6 +80,12 @@ export default function page() {
                     +
                   </button>
                 </div>
+                <button
+                  type="submit"
+                  className="bg-green-700 py-3 px-10 w-fit text-white mt-10 font-semibold text-lg rounded-lg"
+                >
+                  Add To Cart
+                </button>
               </section>
             </div>
           </div>

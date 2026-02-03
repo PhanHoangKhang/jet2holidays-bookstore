@@ -20,13 +20,13 @@ export default function Navbar() {
         </div>
 
         <div className="navigation">
-          <a className="ml-6 font-semibold hover:underline" href="/">
+          <a className="ml-6 font-semibold hover:underline text-lg" href="/">
             Home
           </a>
-          <a className="ml-6 font-semibold hover:underline" href="/books">
+          <a className="ml-6 font-semibold hover:underline text-lg" href="/books">
             Books
           </a>
-          <a className="ml-6 font-semibold hover:underline" href="/forum">
+          <a className="ml-6 font-semibold hover:underline text-lg" href="/forum">
             Discussion
           </a>
         </div>
@@ -35,13 +35,13 @@ export default function Navbar() {
       <nav className="relative flex items-center justify-end flex-wrap gap-10">
         <div className="search-field relative w-71">
           <div className="search-nav hidden">
-            <a className="font-bold text-xl" href="/">
+            <a className="font-bold text-lg" href="/">
               Home
             </a>
-            <a className="font-bold text-xl" href="/shopping">
+            <a className="font-bold text-lg" href="/shopping">
               Books
             </a>
-            <a className="font-bold text-xl" href="/forum">
+            <a className="font-bold text-lg" href="/forum">
               Discussion
             </a>
           </div>
@@ -75,8 +75,8 @@ export default function Navbar() {
             </span>
           </a>
           <a
-            href="/auth/login"
-            className="btn bg-black text-white py-3 px-5 rounded-lg"
+            href="/auth/signin"
+            className="btn bg-black text-white py-3 px-5 rounded-lg text-lg"
           >
             Sign In
           </a>

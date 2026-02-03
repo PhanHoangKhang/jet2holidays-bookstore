@@ -14,10 +14,8 @@ export default function page() {
         const fetchBooks = async () => {
             try {
                 setLoading(true);
-
                 const res = await fetch("/api/books");
                 const data = await res.json();
-
                 setBooks(data.products || []);
             } catch (error) {
                 console.error("Fetch books failed:", error);
