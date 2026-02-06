@@ -10,7 +10,7 @@ A modern online book store application that allows users to browse, search, and 
 
 👤 User authentication (Sign up / Login)
 
-🛒 Cart & order management (if có)
+🛒 Cart & order management
 
 🧑‍💼 Admin book management (CRUD)
 
@@ -42,11 +42,6 @@ A modern online book store application that allows users to browse, search, and 
 ---
 
 ### Authentication & Payment
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=google" />
-  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jwt.svg" width="48" height="48"/>
-  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vietqr.svg" width="48" height="48"/>
-</p>
 
 - **Google Authentication** – OAuth 2.0 login
 - **JWT** – Token-based authentication
@@ -98,7 +93,7 @@ jet2holidays/
 
 ### Environment Variables
 
-Create a .env.local file:
+Create a .env file in the root directory:
 ```
 MONGODB_URI=
 JWT_SECRET=
@@ -129,3 +124,7 @@ npm install
 ```
 npm run dev
 ```
+The app will be available at:
+👉 http://localhost:3000
+
+---
