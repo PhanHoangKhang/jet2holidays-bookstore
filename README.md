@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 Jet2Holidays Bookstore
 
-## Getting Started
+A modern online book store application that allows users to browse, search, and manage books with a clean UI and scalable architecture.
 
-First, run the development server:
+## 🚀 Features
+
+🔍 Browse & search books
+
+📖 View book details
+
+👤 User authentication (Sign up / Login)
+
+🛒 Cart & order management (if có)
+
+🧑‍💼 Admin book management (CRUD)
+
+⚡ Fast performance with modern web stack
+
+## Tech Stack
+
+### Frontend
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind" />
+</p>
+
+- **Next.js** – React framework with SSR and Server Actions
+- **React** – Component-based UI library
+- **TypeScript** – Strongly typed JavaScript
+- **Tailwind CSS** – Utility-first CSS framework
+
+---
+
+### Backend & Database
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=mongodb,nodejs" />
+</p>
+
+- **MongoDB** – NoSQL database
+- **Mongoose** – ODM for MongoDB
+- **JWT (JSON Web Token)** – Secure authentication & authorization
+
+---
+
+### Authentication & Payment
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=google" />
+  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jwt.svg" width="48" height="48"/>
+  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vietqr.svg" width="48" height="48"/>
+</p>
+
+- **Google Authentication** – OAuth 2.0 login
+- **JWT** – Token-based authentication
+- **VietQR** – QR-based payment integration
+
+---
+
+## 📂 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+jet2holidays/
+│
+├── app/                       # Next.js App Router
+│   ├── api/                   # API routes (REST / server handlers)
+│   ├── auth/                  # Authentication pages (login, callback, etc.)
+│   ├── books/                 # Book-related pages
+│   ├── cart/                  # Shopping cart page
+│   ├── favicon.ico
+│   ├── globals.css            # Global styles
+│   ├── layout.tsx             # Root layout
+│   └── page.tsx               # Home page
+│
+├── components/                # Reusable UI components
+│
+├── features/                  # Feature-based business logic
+│   ├── auth/                  # Authentication logic (Google Auth, JWT)
+│   ├── book/                  # Book domain logic
+│   ├── order/                 # Order & VietQR payment logic
+│   └── review/                # Book reviews
+│
+├── lib/                       # Shared libraries & utilities
+│   └── db.ts                  # MongoDB connection
+│
+├── public/                    # Static assets
+│
+├── middleware.ts              # Next.js middleware (auth, route protection)
+├── .env                       # Environment variables
+├── .gitignore
+├── eslint.config.mjs
+├── next.config.ts
+├── postcss.config.mjs
+├── tsconfig.json
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Set up project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a .env.local file:
+```
+MONGODB_URI=
+JWT_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
-## Learn More
+### 1. Clone the repo
 
-To learn more about Next.js, take a look at the following resources:
+```
+git clone https://github.com/PhanHoangKhang/jet2holidays-bookstore.git
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Navigate to the project folder
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+cd jet2holidays
+```
 
-## Deploy on Vercel
+### 3. Install dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. Run the project
+
+```
+npm run dev
+```
