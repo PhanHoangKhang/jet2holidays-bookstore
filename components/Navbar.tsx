@@ -1,6 +1,12 @@
+'use client'
+
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 export default function Navbar() {
+    const searchParam = useSearchParams()
+    const search = searchParam.get('search') as string
+
   return (
     <header className="bg-[#f2fafc] flex justify-between items-center py-4 px-13 fixed w-full top-0 left-0 z-100">
       <div className="left-section flex items-center gap-10">
@@ -45,12 +51,13 @@ export default function Navbar() {
               Discussion
             </a>
           </div>
-          <form className="search-point" action="/shopping" method="GET">
+          <form className="search-point" action="/books" method="GET">
             <input
               className="bg-white w-full text-black py-3 px-5 rounded-xl border-black border"
               type="search"
               placeholder="Search for books"
               name="search"
+              defaultValue={search || ""}
             />
             <button
               className="absolute right-4 top-1/2 -translate-y-1/2"

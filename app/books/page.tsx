@@ -4,9 +4,12 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import BookCard from "@/features/book/components/BookCard";
 import BookMenu from "@/features/book/components/BookMenu";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function page() {
+    const searchParam = useSearchParams()
+    const search = searchParam.get('search')
     const [books, setBooks] = useState<any[]>([])
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -14,19 +17,22 @@ export default function page() {
         const fetchBooks = async () => {
             try {
                 setLoading(true);
-                const res = await fetch("/api/books");
+                const query = search ? `?search=${encodeURIComponent(search)}` : ''
+                const res = await fetch(`/api/books${query}`);
                 const data = await res.json();
                 setBooks(data.products || []);
+
             } catch (error) {
                 console.error("Fetch books failed:", error);
                 setBooks([]);
+
             } finally {
                 setLoading(false);
             }
         };
 
         fetchBooks();
-    }, []);
+    }, [search]);
 
   return (
     <div>
@@ -156,7 +162,9 @@ export default function page() {
           </div>
           <div className="w-4/5 bg-white shadow-lg pb-10">
             <div className="flex flex-row justify-between items-center py-5 px-10">
-                <p>All Books</p>
+                {search ? <p className="text-xl"><span className="font-bold">Search for:</span> "{search}"</p> 
+                : <p className='text-xl'>All Books</p>}
+
                 <div className="sort-bar">
                   <label>Sort by:</label>
                   <select id="sort">

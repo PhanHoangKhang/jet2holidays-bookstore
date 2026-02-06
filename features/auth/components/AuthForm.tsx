@@ -1,8 +1,9 @@
 interface AuthProps {
     title: string,
+    children: React.ReactNode
 }
 
-export default function AuthForm({ title, children }: React.PropsWithChildren<AuthProps>) {
+export default function AuthForm({ title, children }: AuthProps) {
   return (
     <div className="flex justify-center items-center bg-[#f2fafc] mt-40">
       <div className="bg-white px-10 py-10 rounded-lg shadow-md w-110">

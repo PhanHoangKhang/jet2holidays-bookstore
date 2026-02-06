@@ -3,7 +3,7 @@ import { buildDaysAgo } from "../utils/buildDaysAgo";
 import Review from "../models/ReviewModel";
 import mongoose from "mongoose";
 
-export const getAllBooks = async (search = "") => {
+export const getAllBooks = async (search?: string) => {
   const products = await Book.aggregate([
     { $match: { title: { $regex: search, $options: "i" } } },
     { $sample: { size: 100 } }

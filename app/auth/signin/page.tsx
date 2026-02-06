@@ -1,8 +1,26 @@
+'use client'
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AuthForm from "@/features/auth/components/AuthForm";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function page() {
+   
+    const router = useRouter()
+    const [error, setError] = useState<any>('')
+    const [loading, setLoading] = useState<boolean>(false)
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setLoading(true)
+        setError('')
+        
+    }
+
   return (
     <div>
       <Navbar></Navbar>
@@ -11,6 +29,7 @@ export default function page() {
           action="/auth/signin"
           method="post"
           className="flex flex-col gap-5"
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col">
             <label className="font-semibold">Email</label>
@@ -41,18 +60,19 @@ export default function page() {
             Forgotten Password?
           </a>
 
-          <button className="bg-black text-white py-3 rounded-lg font-medium">
+          <button type="submit" className="cursor-pointer bg-black text-white py-3 rounded-lg font-medium">
             Sign In
           </button>
 
-          <a
+        </form>
+
+        <a
             href="/auth/google"
             className="flex gap-3 items-center justify-center py-3 shadow-lg border rounded-lg hover:bg-gray-50 transition"
-          >
+        >
             <img src="/assets/google.png" className="w-8 h-8" />
             Sign in with Google
-          </a>
-        </form>
+        </a>
 
         <hr className="my-6" />
 
