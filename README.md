@@ -107,19 +107,13 @@ GOOGLE_CLIENT_SECRET=
 git clone https://github.com/PhanHoangKhang/jet2holidays-bookstore.git
 ```
 
-### 2. Navigate to the project folder
-
-```
-cd jet2holidays
-```
-
-### 3. Install dependencies
+### 2. Install dependencies
 
 ```
 npm install
 ```
 
-### 4. Run the project
+### 3. Run the project
 
 ```
 npm run dev
