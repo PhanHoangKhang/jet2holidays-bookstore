@@ -95,7 +95,7 @@ jet2holidays/
 
 Create a .env file in the root directory:
 ```
-MONGODB_URI=
+MONGO_URL=
 JWT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
