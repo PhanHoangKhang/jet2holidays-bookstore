@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -8,31 +8,29 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function page() {
-    const searchParam = useSearchParams()
-    const search = searchParam.get('search')
-    const [books, setBooks] = useState<any[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
+  const searchParam = useSearchParams();
+  const search = searchParam.get("search");
+  const [books, setBooks] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                setLoading(true);
-                const query = search ? `?search=${encodeURIComponent(search)}` : ''
-                const res = await fetch(`/api/books${query}`);
-                const data = await res.json();
-                setBooks(data.products || []);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        setLoading(true);
+        const query = search ? `?search=${encodeURIComponent(search)}` : "";
+        const res = await fetch(`/api/books${query}`);
+        const data = await res.json();
+        setBooks(data.products || []);
+      } catch (error) {
+        console.error("Fetch books failed:", error);
+        setBooks([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            } catch (error) {
-                console.error("Fetch books failed:", error);
-                setBooks([]);
-
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchBooks();
-    }, [search]);
+    fetchBooks();
+  }, [search]);
 
   return (
     <div>
@@ -162,28 +160,41 @@ export default function page() {
           </div>
           <div className="w-4/5 bg-white shadow-lg pb-10">
             <div className="flex flex-row justify-between items-center py-5 px-10">
-                {search ? <p className="text-xl"><span className="font-bold">Search for:</span> "{search}"</p> 
-                : <p className='text-xl'>All Books</p>}
+              {search ? (
+                <p className="text-xl">
+                  <span className="font-bold">Search for:</span> "{search}"
+                </p>
+              ) : (
+                <p className="text-xl">All Books</p>
+              )}
 
-                <div className="sort-bar">
-                  <label>Sort by:</label>
-                  <select id="sort">
-                      <option value="az">A → Z</option>
-                      <option value="za">Z → A</option>
-                      <option value="priceAsc">Price ↑</option>
-                      <option value="priceDesc">Price ↓</option>
-                      <option value="ratingAsc">Rating ↑</option>
-                      <option value="ratingDesc">Rating ↓</option>
-                  </select>
-                </div>
+              <div className="sort-bar">
+                <label>Sort by:</label>
+                <select id="sort">
+                  <option value="az">A → Z</option>
+                  <option value="za">Z → A</option>
+                  <option value="priceAsc">Price ↑</option>
+                  <option value="priceDesc">Price ↓</option>
+                  <option value="ratingAsc">Rating ↑</option>
+                  <option value="ratingDesc">Rating ↓</option>
+                </select>
+              </div>
             </div>
 
-            {loading ? (<p className="text-center text-black py-5 text-2xl">Loading...</p>) : (
-                <div className="grid grid-cols-3 gap-3 px-10">
-                    {books.map((book: any) => (
-                        <BookCard key={book._id} id={book._id} title={book.title} price={book.price} image={book.image}></BookCard>
-                    ))}
-                </div>
+            {loading ? (
+              <p className="text-center text-black py-5 text-2xl">Loading...</p>
+            ) : (
+              <div className="grid grid-cols-3 gap-3 px-10">
+                {books.map((book: any) => (
+                  <BookCard
+                    key={book._id}
+                    id={book._id}
+                    title={book.title}
+                    price={book.price}
+                    image={book.image}
+                  ></BookCard>
+                ))}
+              </div>
             )}
           </div>
         </div>

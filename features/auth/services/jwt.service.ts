@@ -1,4 +1,7 @@
 import jwt from "jsonwebtoken";
+import { NextRequest } from "next/server";
+import User from "../models/UserModel";
+import dbConnect from "@/lib/db";
 
 interface JWTPayload {
     _id: string
@@ -23,5 +26,18 @@ export const verifyToken = (token: string) => {
     } catch (error) {
         throw new Error('Invalid token')
     }
+}
+
+export async function getUserFromToken(req: NextRequest) {
+  const authHeader = req.headers.get("authorization");
+  if (!authHeader) return null;
+
+  const token = authHeader.split(" ")[1];
+  if (!token) return null;
+
+  const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+
+  await dbConnect();
+  return User.findById(decoded.userId);
 }
 

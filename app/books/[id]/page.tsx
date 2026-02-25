@@ -6,6 +6,7 @@ import BookMenu from "@/features/book/components/BookMenu";
 import { Book } from "@/features/book/types/book";
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import AddToCartButton from "@/components/AddToCartBtn";
 
 export default function page() {
   const params = useParams();
@@ -80,12 +81,9 @@ export default function page() {
                     +
                   </button>
                 </div>
-                <button
-                  type="submit"
-                  className="bg-green-700 py-3 px-10 w-fit text-white mt-10 font-semibold text-lg rounded-lg"
-                >
-                  Add To Cart
-                </button>
+                {book?._id && 
+                  <AddToCartButton bookId={book?._id} quantity={quantity} isAuthenticated={false}></AddToCartButton>
+                }
               </section>
             </div>
           </div>
