@@ -7,6 +7,7 @@ import {
   removeFromGuestCart,
 } from '@/features/order/services/cart.service'
 import { CartItem, GuestCartItem } from '@/features/order/types/cart'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 export default function Page() {
@@ -45,14 +46,14 @@ export default function Page() {
                   {/* Product */}
                   <div className="col-span-2 flex gap-4 items-center">
                     <div className="w-16 h-20 bg-gray-100 rounded-md flex items-center justify-center text-xs text-gray-400">
-                      {item.image}
+                      <img src={item.image}></img>
                     </div>
                     <div>
                       <p className="font-medium text-gray-800">
-                        {item.bookId}
+                        {item.title}
                       </p>
                       <p className="text-sm text-gray-500">
-                        {item.bookId.title}
+                        {item.bookId}
                       </p>
                     </div>
                   </div>

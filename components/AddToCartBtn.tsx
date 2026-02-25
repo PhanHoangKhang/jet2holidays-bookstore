@@ -6,29 +6,29 @@ import { addGuestCart } from "@/features/order/services/cart.service";
 interface Props {
   bookId: string;
   isAuthenticated: boolean;
-  quantity: number
+  quantity: number;
 }
 
 export default function AddToCartButton({
   bookId,
   isAuthenticated,
-  quantity
+  quantity,
 }: Props) {
   const addToCart = async () => {
     if (!isAuthenticated) {
-      addGuestCart(bookId, quantity);
+      await addGuestCart(bookId, quantity);
       alert("Added to cart!");
       return;
     }
 
     await axios.post(
       "/api/cart/add",
-      { bookId, quantity},
+      { bookId, quantity },
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      }
+      },
     );
 
     alert("Added to cart!");
