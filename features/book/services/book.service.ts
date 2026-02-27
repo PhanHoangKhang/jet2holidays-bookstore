@@ -29,6 +29,7 @@ export const getAllBooks = async (search?: string) => {
 
   return { products, ratingMap };
 };
+
 export const getBookDetail = async (id: string) => {
   const item = await Book.findById(id).lean();
 

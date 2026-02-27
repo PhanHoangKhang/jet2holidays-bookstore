@@ -37,7 +37,7 @@ export default function AddToCartButton({
   return (
     <button
       onClick={addToCart}
-      className="bg-black text-white px-4 py-2 rounded"
+      className="bg-black cursor-pointer text-white px-4 py-2 rounded mt-6"
     >
       Add to Cart
     </button>

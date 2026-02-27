@@ -1,11 +1,38 @@
-'use client'
+"use client";
 
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+}
 
 export default function Navbar() {
-    const searchParam = useSearchParams()
-    const search = searchParam.get('search') as string
+  const searchParam = useSearchParams();
+  const search = searchParam.get("search") as string;
+
+  const [user, setUser] = useState<User | null>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/auth/me", {
+          credentials: "include",
+        });
+
+        const data = await res.json();
+        setUser(data.user);
+      } catch (error) {
+        console.error("Fetch user failed:", error);
+        setUser(null);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <header className="bg-[#f2fafc] flex justify-between items-center py-4 px-13 fixed w-full top-0 left-0 z-100">
@@ -29,10 +56,16 @@ export default function Navbar() {
           <a className="ml-6 font-semibold hover:underline text-lg" href="/">
             Home
           </a>
-          <a className="ml-6 font-semibold hover:underline text-lg" href="/books">
+          <a
+            className="ml-6 font-semibold hover:underline text-lg"
+            href="/books"
+          >
             Books
           </a>
-          <a className="ml-6 font-semibold hover:underline text-lg" href="/forum">
+          <a
+            className="ml-6 font-semibold hover:underline text-lg"
+            href="/forum"
+          >
             Discussion
           </a>
         </div>
@@ -81,12 +114,55 @@ export default function Navbar() {
               0
             </span>
           </a>
-          <a
-            href="/auth/signin"
-            className="btn bg-black text-white py-3 px-5 rounded-lg text-lg"
-          >
-            Sign In
-          </a>
+          {!user ? (
+            <a
+              href="/auth/signin"
+              className="bg-black text-white py-3 px-5 rounded-lg text-lg"
+            >
+              Sign In
+            </a>
+          ) : (
+            <div className="relative">
+              <img
+                src={user.avatar || "/assets/user.png"}
+                className="w-11 h-11 rounded-full cursor-pointer"
+                onClick={() => setOpen(!open)}
+              />
+
+              {open && (
+                <div className="absolute right-0 mt-3 w-48 bg-white shadow-lg rounded-lg border">
+                  <p className="px-4 py-3 text-sm font-semibold">{user.name}</p>
+
+                  <a
+                    href="/profile"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Profile
+                  </a>
+
+                  <a
+                    href="/orders"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Orders
+                  </a>
+
+                  <button
+                    onClick={async () => {
+                      await fetch("/api/auth/signout", {
+                        method: "POST",
+                        credentials: "include",
+                      });
+                      location.reload();
+                    }}
+                    className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </nav>
 

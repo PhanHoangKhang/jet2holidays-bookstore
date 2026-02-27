@@ -19,6 +19,28 @@ export default function page() {
         setLoading(true)
         setError('')
         
+        try {
+          const res = await fetch('/api/auth/signin', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email, password}),
+            credentials: 'include', 
+          })
+
+          const data = await res.json()
+
+          if(!res.ok) {
+            setError(data.message || 'Sign in failed')
+          } else {
+            router.push('/')
+          }
+        } catch (error) {
+          setError('Something went wrong')
+        } finally {
+          setLoading(false)
+        }
     }
 
   return (
@@ -26,8 +48,6 @@ export default function page() {
       <Navbar></Navbar>
       <AuthForm title="Sign In">
         <form
-          action="/auth/signin"
-          method="post"
           className="flex flex-col gap-5"
           onSubmit={handleSubmit}
         >
@@ -37,6 +57,7 @@ export default function page() {
               type="email"
               name="email"
               placeholder="Email..."
+              onChange={e => setEmail(e.target.value)}
               required
               className="mt-2 px-5 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
@@ -48,10 +69,16 @@ export default function page() {
               type="password"
               name="password"
               placeholder="Password..."
+              onChange={e => setPassword(e.target.value)}
               required
               className="mt-2 px-5 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
+
+          {error && (
+            <p className="text-sm text-center text-red-500">{error}</p> 
+          )}
+
 
           <a
             href="/auth/reset-password"
@@ -60,8 +87,12 @@ export default function page() {
             Forgotten Password?
           </a>
 
-          <button type="submit" className="cursor-pointer bg-black text-white py-3 rounded-lg font-medium">
-            Sign In
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-black cursor-pointer mb-5 hover:bg-gray-700 text-white py-3 rounded-lg font-medium disabled:opacity-60"
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
 
         </form>

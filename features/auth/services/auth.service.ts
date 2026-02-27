@@ -32,6 +32,8 @@ export const signUp = async({email, password, confirmPassword}: SignUpInput) => 
     const newUser = await User.create({
         email,
         password: hashPassword,
+        name: '',
+        avatar: '',
         role: 'user',
         isActive: true
     })
@@ -39,7 +41,10 @@ export const signUp = async({email, password, confirmPassword}: SignUpInput) => 
     const token = signToken({
         _id: newUser._id.toString(),
         email: newUser.email,
-        role: newUser.role
+        role: newUser.role,
+        name: newUser.name,
+        avatar: newUser.avatar
+
     })
 
     return {
@@ -80,7 +85,9 @@ export const signIn = async({email, password}: LoginInput) => {
     const token = signToken({
         _id: user._id.toString(),
         email: user.email,
-        role: user.role
+        role: user.role,
+        name: user.name,
+        avatar: user.avatar
     })
 
     return {
@@ -88,7 +95,9 @@ export const signIn = async({email, password}: LoginInput) => {
         user: {
             _id: user._id.toString(),
             email: user.email,
-            role: user.role 
+            role: user.role,
+            name: user.name,
+            avatar: user.avatar
         }
     }
 }

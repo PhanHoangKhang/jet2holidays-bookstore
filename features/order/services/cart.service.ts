@@ -49,7 +49,11 @@ export const addGuestCart = async (
     // Fetch book details from API
     try {
       const response = await fetch(`/api/books/${bookId}`);
-      if (!response.ok) throw new Error("Failed to fetch book");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch book");
+      }
+        
       const data = await response.json();
       const book = data.item;
 
@@ -60,6 +64,7 @@ export const addGuestCart = async (
         image: book.image,
         quantity,
       });
+      
     } catch (error) {
       console.error("Error fetching book details:", error);
       // Fallback: add without book details
@@ -73,10 +78,8 @@ export const addGuestCart = async (
 
 export const removeFromGuestCart = (bookId: string): GuestCart => {
   const cart = getGuestCart();
-
   cart.items = cart.items.filter((item: any) => item.bookId !== bookId);
 
   saveCart(cart);
-
   return cart;
 };

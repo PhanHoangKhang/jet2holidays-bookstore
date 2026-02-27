@@ -7,7 +7,6 @@ import {
   removeFromGuestCart,
 } from '@/features/order/services/cart.service'
 import { CartItem, GuestCartItem } from '@/features/order/types/cart'
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 export default function Page() {

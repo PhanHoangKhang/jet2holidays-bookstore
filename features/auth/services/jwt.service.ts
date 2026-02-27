@@ -6,7 +6,9 @@ import dbConnect from "@/lib/db";
 interface JWTPayload {
     _id: string
     email: string
+    name: string | undefined
     role: string
+    avatar: string | undefined
 }
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
