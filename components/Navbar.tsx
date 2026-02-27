@@ -1,5 +1,6 @@
 "use client";
 
+import LogOutModal from "@/features/auth/components/LogOutModal";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ export default function Navbar() {
 
   const [user, setUser] = useState<User | null>(null);
   const [open, setOpen] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -77,7 +79,7 @@ export default function Navbar() {
             <a className="font-bold text-lg" href="/">
               Home
             </a>
-            <a className="font-bold text-lg" href="/shopping">
+            <a className="font-bold text-lg" href="/books">
               Books
             </a>
             <a className="font-bold text-lg" href="/forum">
@@ -148,17 +150,23 @@ export default function Navbar() {
                   </a>
 
                   <button
-                    onClick={async () => {
+                    onClick={() => setShowLogout(true)}
+                    className="w-full cursor-pointer text-left px-4 py-2 text-red-500 hover:bg-gray-100"
+                  >
+                    Sign out
+                  </button>
+
+                  <LogOutModal
+                    open={showLogout}
+                    onClose={() => setShowLogout(false)}
+                    onConfirm={async () => {
                       await fetch("/api/auth/signout", {
                         method: "POST",
                         credentials: "include",
                       });
                       location.reload();
                     }}
-                    className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100"
-                  >
-                    Sign out
-                  </button>
+                  ></LogOutModal>
                 </div>
               )}
             </div>
