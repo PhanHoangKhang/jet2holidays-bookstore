@@ -1,30 +1,28 @@
-'use client'
+"use client";
 
-import Breadcrumb from '@/components/Breadcrumb'
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
+import Breadcrumb from "@/components/Breadcrumb";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import {
   getGuestCart,
   removeFromGuestCart,
-} from '@/features/order/services/cart.service'
-import { CartItem, GuestCartItem } from '@/features/order/types/cart'
-import React, { useEffect, useState } from 'react'
+} from "@/features/order/services/CartService";
+import { CartItem, GuestCartItem } from "@/features/order/types/cart";
+import React, { useEffect, useState } from "react";
 
 export default function Page() {
-  const [cart, setCart] = useState<GuestCartItem[]>([])
+  const [cart, setCart] = useState<GuestCartItem[]>([]);
 
   useEffect(() => {
-    const guestCart = getGuestCart()
-    setCart(guestCart?.items ?? [])
-  }, [])
+    const guestCart = getGuestCart();
+    setCart(guestCart?.items ?? []);
+  }, []);
 
   return (
     <div>
       <Navbar />
       <div className="mt-30 px-25">
-        <h2 className="text-center text-3xl font-semibold mb-10">
-          Your Cart
-        </h2>
+        <h2 className="text-center text-3xl font-semibold mb-10">Your Cart</h2>
         <Breadcrumb></Breadcrumb>
         <div className="flex flex-col mt-15">
           <div className="grid grid-cols-6 gap-4 border-b pb-3 text-sm font-semibold text-gray-600">
@@ -48,12 +46,8 @@ export default function Page() {
                       <img src={item.image}></img>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-800">
-                        {item.title}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {item.bookId}
-                      </p>
+                      <p className="font-medium text-gray-800">{item.title}</p>
+                      <p className="text-sm text-gray-500">{item.bookId}</p>
                     </div>
                   </div>
 
@@ -63,9 +57,7 @@ export default function Page() {
                   </p>
 
                   {/* Quantity */}
-                  <p className="text-center">
-                    {item.quantity}
-                  </p>
+                  <p className="text-center">{item.quantity}</p>
 
                   {/* Total */}
                   <p className="text-center font-medium">
@@ -75,9 +67,8 @@ export default function Page() {
                   {/* Action */}
                   <button
                     onClick={() => {
-                      const updated =
-                        removeFromGuestCart(item.bookId)
-                      setCart(updated.items)
+                      const updated = removeFromGuestCart(item.bookId);
+                      setCart(updated.items);
                     }}
                     className="text-center text-sm text-red-500 hover:underline"
                   >
@@ -90,9 +81,7 @@ export default function Page() {
                 <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-3xl">
                   🛒
                 </div>
-                <p className="mt-6 text-xl font-medium">
-                  Your cart is empty
-                </p>
+                <p className="mt-6 text-xl font-medium">Your cart is empty</p>
                 <p className="text-sm mt-2">
                   Looks like you haven’t added anything yet
                 </p>
@@ -104,5 +93,5 @@ export default function Page() {
 
       <Footer />
     </div>
-  )
+  );
 }

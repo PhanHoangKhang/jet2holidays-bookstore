@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { addGuestCart } from "@/features/order/services/cart.service";
+import { addGuestCart } from "@/features/order/services/CartService";
 
 interface Props {
   bookId: string;

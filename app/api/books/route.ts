@@ -1,15 +1,15 @@
-import { getAllBooks } from "@/features/book/services/book.service";
+import { getAllBooks } from "@/features/book/services/BookService";
 import connectDB from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-    await connectDB()
+  await connectDB();
 
-    const {searchParams} = new URL(req.url)
-    
-    const search = searchParams.get('search') || ''
+  const { searchParams } = new URL(req.url);
 
-    const {products, ratingMap} = await getAllBooks(search)
+  const search = searchParams.get("search") || "";
 
-    return NextResponse.json({products, ratingMap})
+  const { products, ratingMap } = await getAllBooks(search);
+
+  return NextResponse.json({ products, ratingMap });
 }

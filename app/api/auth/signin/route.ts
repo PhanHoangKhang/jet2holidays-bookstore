@@ -1,28 +1,30 @@
-import { signIn } from "@/features/auth/services/auth.service";
+import { signIn } from "@/features/auth/services/AuthService";
 import connectDB from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    try {
-        await connectDB()
-        const body = await req.json()
+  try {
+    await connectDB();
+    const body = await req.json();
 
-        const { token } = await signIn(body)
+    const { token } = await signIn(body);
 
-        const res = NextResponse.json({message: 'Sign In successfully'})
+    const res = NextResponse.json({ message: "Sign In successfully" });
 
-        res.cookies.set("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            path: "/",
-        });
+    res.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+    });
 
-        return res;
+    return res;
+  } catch (error: any) {
+    console.error(error.message);
 
-    } catch (error: any) {
-        console.error(error.message)
-
-        return NextResponse.json({message: error.message || 'Server error'}, { status: error?.status || 500 })
-    }
+    return NextResponse.json(
+      { message: error.message || "Server error" },
+      { status: error?.status || 500 },
+    );
+  }
 }

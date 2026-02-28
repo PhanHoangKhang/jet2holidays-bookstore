@@ -4,7 +4,7 @@ import BookCard from "@/features/book/components/BookCard";
 import {
   getBestSellerBooks,
   getNewBooks,
-} from "@/features/book/services/book.service";
+} from "@/features/book/services/BookService";
 import connectDB from "@/lib/db";
 
 export default async function Home() {
