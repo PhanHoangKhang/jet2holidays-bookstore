@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 interface LogOutProps {
@@ -6,11 +8,17 @@ interface LogOutProps {
   onConfirm: () => void
 }
 
-export default function LogOutModal({open, onClose, onConfirm}: LogOutProps) {
-  if (!open) return null
-
+export default function LogOutModal({
+  open,
+  onClose,
+  onConfirm,
+}: LogOutProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-200 ${
+        open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
+    >
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/40"
@@ -18,7 +26,12 @@ export default function LogOutModal({open, onClose, onConfirm}: LogOutProps) {
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+      <div
+        className={`relative bg-white rounded-xl shadow-lg w-full max-w-md p-6
+          transform transition-all duration-200 ease-in-out
+          ${open ? 'scale-100 translate-y-0' : 'scale-95 translate-y-2'}
+        `}
+      >
         <h3 className="text-xl font-semibold text-gray-800">
           Sign out
         </h3>
@@ -37,7 +50,7 @@ export default function LogOutModal({open, onClose, onConfirm}: LogOutProps) {
 
           <button
             onClick={onConfirm}
-            className="px-5 py-2 rounded-lg hover:rounded-lg cursor-pointer hover:bg-gray-700 bg-black text-white hover:opacity-90"
+            className="px-5 py-2 rounded-lg bg-black text-white hover:bg-gray-700"
           >
             Sign out
           </button>
