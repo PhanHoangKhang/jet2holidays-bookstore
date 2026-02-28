@@ -1,5 +1,6 @@
 'use client'
 
+import Breadcrumb from '@/components/Breadcrumb'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import {
@@ -20,12 +21,11 @@ export default function Page() {
   return (
     <div>
       <Navbar />
-
       <div className="mt-30 px-25">
         <h2 className="text-center text-3xl font-semibold mb-10">
           Your Cart
         </h2>
-
+        <Breadcrumb></Breadcrumb>
         <div className="flex flex-col mt-15">
           <div className="grid grid-cols-6 gap-4 border-b pb-3 text-sm font-semibold text-gray-600">
             <p className="col-span-2">Product</p>

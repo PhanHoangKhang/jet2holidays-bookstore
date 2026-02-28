@@ -7,6 +7,7 @@ import { Book } from "@/features/book/types/book";
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import AddToCartButton from "@/components/AddToCartBtn";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default function page() {
   const params = useParams();
@@ -41,6 +42,7 @@ export default function page() {
       <Navbar />
       <div className="flex flex-col mt-30 mx-20">
         <BookMenu />
+        <Breadcrumb></Breadcrumb>
         {loading ? (
           <p className="text-center text-2xl p-4 font-semibold">Loading...</p>
         ) : (

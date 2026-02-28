@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function BookMenu() {
@@ -7,9 +8,9 @@ export default function BookMenu() {
             <p>Menu</p>
           </div>
           <div className="menu-categories flex justify-around gap-10 text-lg py-3 px-8 font-semibold bg-white">
-            <a href="/books?feature=best-seller">Best seller</a>
-            <a href="/books?feature=new-in">New In</a>
-            <a href="/books?feature=all-books">All books</a>
+            <Link href="/books?feature=best-seller">Best seller</Link>
+            <Link href="/books?feature=new-in">New In</Link>
+            <Link href="/books?feature=all-books">All books</Link>
           </div>
     </div>
   )

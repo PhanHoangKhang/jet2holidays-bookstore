@@ -1,5 +1,6 @@
 "use client";
 
+import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import BookCard from "@/features/book/components/BookCard";
@@ -37,6 +38,7 @@ export default function page() {
       <Navbar></Navbar>
       <div className="flex flex-col mt-30 mx-20">
         <BookMenu></BookMenu>
+        <Breadcrumb></Breadcrumb>
         <div className="flex w-full mt-10 gap-8">
           <div className="menu-product w-1/5 bg-white h-fit rounded-lg p-5 shadow-lg">
             <h3>Filter By:</h3>

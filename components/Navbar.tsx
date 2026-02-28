@@ -1,6 +1,7 @@
 "use client";
 
 import LogOutModal from "@/features/auth/components/LogOutModal";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -40,7 +41,7 @@ export default function Navbar() {
     <header className="bg-[#f2fafc] flex justify-between items-center py-4 px-13 fixed w-full top-0 left-0 z-100">
       <div className="left-section flex items-center gap-10">
         <div className="logo-title">
-          <a className="flex gap-3 flex-row items-center" href="/">
+          <Link className="flex gap-3 flex-row items-center" href="/">
             <img
               className="rounded-xl"
               src="/assets/logo.png"
@@ -51,40 +52,40 @@ export default function Navbar() {
             <p className="font-semibold text-lg" id="title-name">
               Jet2Holidays <br /> Book store
             </p>
-          </a>
+          </Link>
         </div>
 
         <div className="navigation">
-          <a className="ml-6 font-semibold hover:underline text-lg" href="/">
+          <Link className="ml-6 font-semibold hover:underline text-lg" href="/">
             Home
-          </a>
-          <a
+          </Link>
+          <Link
             className="ml-6 font-semibold hover:underline text-lg"
             href="/books"
           >
             Books
-          </a>
-          <a
+          </Link>
+          <Link
             className="ml-6 font-semibold hover:underline text-lg"
             href="/forum"
           >
             Discussion
-          </a>
+          </Link>
         </div>
       </div>
 
       <nav className="relative flex items-center justify-end flex-wrap gap-10">
         <div className="search-field relative w-71">
           <div className="search-nav hidden">
-            <a className="font-bold text-lg" href="/">
+            <Link className="font-bold text-lg" href="/">
               Home
-            </a>
-            <a className="font-bold text-lg" href="/books">
+            </Link>
+            <Link className="font-bold text-lg" href="/books">
               Books
-            </a>
-            <a className="font-bold text-lg" href="/forum">
+            </Link>
+            <Link className="font-bold text-lg" href="/forum">
               Discussion
-            </a>
+            </Link>
           </div>
           <form className="search-point" action="/books" method="GET">
             <input
@@ -107,7 +108,7 @@ export default function Navbar() {
         </div>
 
         <div className="user-actions flex flex-row gap-20 items-center">
-          <a href="/cart" className="section-cart relative">
+          <Link href="/cart" className="section-cart relative">
             <img
               className="w-12 h-12 cursor-pointer transition-all duration-200 ease"
               src="/assets/cart.png"
@@ -115,14 +116,14 @@ export default function Navbar() {
             <span className="cart-num absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center p-1 rounded-full bg-red-600 text-white">
               0
             </span>
-          </a>
+          </Link>
           {!user ? (
-            <a
+            <Link
               href="/auth/signin"
               className="bg-black text-white py-3 px-5 rounded-lg text-lg"
             >
               Sign In
-            </a>
+            </Link>
           ) : (
             <div className="relative">
               <img
@@ -135,19 +136,19 @@ export default function Navbar() {
                 <div className="absolute right-0 mt-3 w-48 bg-white shadow-lg rounded-lg border">
                   <p className="px-4 py-3 text-sm font-semibold">{user.name}</p>
 
-                  <a
+                  <Link
                     href="/profile"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Profile
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     href="/orders"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Orders
-                  </a>
+                  </Link>
 
                   <button
                     onClick={() => setShowLogout(true)}
