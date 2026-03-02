@@ -55,15 +55,6 @@ export default function page() {
           >
             Sign Up
           </button>
-
-          <a
-            href="/auth/google"
-            className="flex gap-3 items-center justify-center py-3 shadow-lg border rounded-lg
-                            hover:bg-gray-50 transition"
-          >
-            <img src="/assets/google.png" className="w-8 h-8" />
-            Sign up with Google
-          </a>
         </form>
 
         <hr className="my-6" />

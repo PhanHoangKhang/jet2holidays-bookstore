@@ -34,6 +34,7 @@ export default function Navbar() {
         setUser(null);
       }
     };
+    
     fetchUser();
   }, []);
 

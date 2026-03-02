@@ -1,4 +1,5 @@
-// app/api/auth/me/route.ts
+export const runtime = 'nodejs'
+
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/features/auth/services/JwtService";
 
@@ -17,6 +18,7 @@ export async function GET(req: NextRequest) {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        description: user.description
       },
     });
   } catch {

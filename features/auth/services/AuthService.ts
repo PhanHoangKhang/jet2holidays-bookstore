@@ -49,6 +49,7 @@ export const signUp = async ({
     role: newUser.role,
     name: newUser.name,
     avatar: newUser.avatar,
+    description: newUser.description
   });
 
   return {
@@ -56,7 +57,10 @@ export const signUp = async ({
     user: {
       _id: newUser._id.toString(),
       email: newUser.email,
+      name: newUser.name,
       role: newUser.role,
+      avatar: newUser.avatar,
+      description: newUser.description
     },
   };
 };
@@ -96,6 +100,7 @@ export const signIn = async ({ email, password }: LoginInput) => {
     role: user.role,
     name: user.name,
     avatar: user.avatar,
+    description: user.description
   });
 
   return {
@@ -106,6 +111,7 @@ export const signIn = async ({ email, password }: LoginInput) => {
       role: user.role,
       name: user.name,
       avatar: user.avatar,
+      description: user.description
     },
   };
 };

@@ -9,6 +9,7 @@ interface JWTPayload {
     name: string | undefined
     role: string
     avatar: string | undefined
+    description: string | undefined
 }
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -37,7 +38,7 @@ export async function getUserFromToken(req: NextRequest) {
   const token = authHeader.split(" ")[1];
   if (!token) return null;
 
-  const decoded: any = jwt.verify(token, process.env.JWT_SECRET!);
+  const decoded: any = jwt.verify(token, JWT_SECRET);
 
   await dbConnect();
   return User.findById(decoded.userId);

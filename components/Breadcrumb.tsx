@@ -12,7 +12,7 @@ export default function Breadcrumb() {
     .filter(Boolean)
 
   return (
-    <nav className="text-sm text-gray-600 mt-4">
+    <nav className="text-sm text-gray-600 mt-4 mb-4">
       <ul className="flex items-center gap-2 flex-wrap">
         {/* Home */}
         <li className="flex items-center gap-2">
