@@ -1,27 +1,71 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AuthForm from "@/features/auth/components/AuthForm";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-export default function page() {
+export default function SignUpPage() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    try {
+      setLoading(true);
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Signup failed");
+        return;
+      }
+      // redirect sang signin
+      router.push("/auth/signin");
+    } catch (err) {
+      setError("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+      
+  }, [])
+
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
+
       <AuthForm title="Sign Up">
-        <form
-          action="/auth/signup"
-          method="post"
-          className="flex flex-col gap-5"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col">
             <label className="font-semibold">Email</label>
             <input
               type="email"
-              name="email"
               placeholder="Email..."
               required
-              className="mt-2 px-5 py-3 border rounded-lg
-                            focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-2 px-5 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
@@ -29,11 +73,11 @@ export default function page() {
             <label className="font-semibold">Password</label>
             <input
               type="password"
-              name="password"
               placeholder="Password..."
               required
-              className="mt-2 px-5 py-3 border rounded-lg
-                            focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-2 px-5 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
@@ -41,19 +85,24 @@ export default function page() {
             <label className="font-semibold">Confirm Password</label>
             <input
               type="password"
-              name="confirmPassword"
               placeholder="Confirm password..."
               required
-              className="mt-2 px-5 py-3 border rounded-lg
-                            focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="mt-2 px-5 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
+          {error && (
+            <p className="text-red-500 text-sm text-center">{error}</p>
+          )}
+
           <button
             type="submit"
-            className="bg-black text-white py-3 rounded-lg font-medium"
+            disabled={loading}
+            className="bg-black text-white py-3 rounded-lg font-medium disabled:opacity-50"
           >
-            Sign Up
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
         </form>
 
@@ -66,7 +115,8 @@ export default function page() {
           </a>
         </p>
       </AuthForm>
-      <Footer></Footer>
+
+      <Footer />
     </div>
   );
 }

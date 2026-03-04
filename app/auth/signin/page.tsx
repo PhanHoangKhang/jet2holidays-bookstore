@@ -3,8 +3,9 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AuthForm from "@/features/auth/components/AuthForm";
+import GoogleButton from "@/features/auth/components/GoogleBtn";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function page() {
    
@@ -97,13 +98,7 @@ export default function page() {
 
         </form>
 
-        <a
-            href="/auth/google"
-            className="flex gap-3 items-center justify-center py-3 shadow-lg border rounded-lg hover:bg-gray-50 transition"
-        >
-            <img src="/assets/google.png" className="w-8 h-8" />
-            Sign in with Google
-        </a>
+        <GoogleButton/>
 
         <hr className="my-6" />
 
