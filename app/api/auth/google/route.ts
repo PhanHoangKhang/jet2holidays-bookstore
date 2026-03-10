@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { GoogleAuth } from "@/features/auth/services/GoogleService";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const { token } = await req.json();
 
   try {

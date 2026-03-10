@@ -42,7 +42,7 @@ export default function page() {
       <Navbar />
       <div className="flex flex-col mt-30 mx-20">
         <BookMenu />
-        <Breadcrumb></Breadcrumb>
+        <Breadcrumb/>
         {loading ? (
           <p className="text-center text-2xl p-4 font-semibold">Loading...</p>
         ) : (
@@ -83,9 +83,13 @@ export default function page() {
                     +
                   </button>
                 </div>
-                {book?._id && 
-                  <AddToCartButton bookId={book?._id} quantity={quantity} isAuthenticated={false}></AddToCartButton>
-                }
+                {book?._id && (
+                  <AddToCartButton
+                    bookId={book?._id}
+                    quantity={quantity}
+                    isAuthenticated={false}
+                  ></AddToCartButton>
+                )}
               </section>
             </div>
           </div>
