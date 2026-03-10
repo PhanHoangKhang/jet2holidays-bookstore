@@ -4,8 +4,6 @@ import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
 
 interface CarouselProps {
   children: React.ReactNode[];
@@ -37,7 +35,7 @@ export default function Carousel({ children }: CarouselProps) {
       {/* Left Button */}
       <button
         onClick={() => swiperRef.current?.slidePrev()}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 bg-green-700 hover:bg-green-800 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 bg-[#263650] hover:bg-green-800 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
       >
         ◀
       </button>
@@ -45,7 +43,7 @@ export default function Carousel({ children }: CarouselProps) {
       {/* Right Button */}
       <button
         onClick={() => swiperRef.current?.slideNext()}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 bg-green-700 hover:bg-green-800 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 bg-[#263650] hover:bg-green-800 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
       >
         ▶
       </button>

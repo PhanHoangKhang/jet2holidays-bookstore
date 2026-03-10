@@ -11,8 +11,8 @@ import connectDB from "@/lib/db";
 export default async function Home() {
   await connectDB();
 
-  const newIn = await getNewBooks(3);
-  const bestSeller = await getBestSellerBooks(3);
+  const newIn = await getNewBooks(10);
+  const bestSeller = await getBestSellerBooks(10);
 
   return (
     <div>
