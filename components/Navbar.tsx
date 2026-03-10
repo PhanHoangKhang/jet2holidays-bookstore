@@ -1,6 +1,7 @@
 "use client";
 
 import LogOutModal from "@/features/auth/components/LogOutModal";
+import { getGuestCart } from "@/features/order/services/CartService";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -15,10 +16,25 @@ interface User {
 export default function Navbar() {
   const searchParam = useSearchParams();
   const search = searchParam.get("search") as string;
-
   const [user, setUser] = useState<User | null>(null);
   const [open, setOpen] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [cartLength, setCartLength] = useState<number>(0);
+  
+  useEffect(() => {
+    const updateCart = () => {
+      const guestCart = getGuestCart()
+      setCartLength(guestCart?.items?.length ?? 0)
+    }
+
+    updateCart()
+
+    window.addEventListener('cartUpdated', updateCart)
+
+     return () => {
+      window.removeEventListener("cartUpdated", updateCart);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -115,7 +131,7 @@ export default function Navbar() {
               src="/assets/cart.png"
             />
             <span className="cart-num absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center p-1 rounded-full bg-red-600 text-white">
-              0
+              {cartLength}
             </span>
           </Link>
           {!user ? (
