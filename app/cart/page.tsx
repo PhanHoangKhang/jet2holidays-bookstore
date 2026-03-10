@@ -3,6 +3,7 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import CartCard from "@/features/order/components/CartCard";
 import {
   getGuestCart,
   removeFromGuestCart,
@@ -23,7 +24,7 @@ export default function Page() {
       <Navbar />
       <div className="mt-30 px-25">
         <h2 className="text-center text-3xl font-semibold mb-10">Your Cart</h2>
-        <Breadcrumb></Breadcrumb>
+        <Breadcrumb />
         <div className="flex flex-col mt-15">
           <div className="grid grid-cols-6 gap-4 border-b pb-3 text-sm font-semibold text-gray-600">
             <p className="col-span-2">Product</p>
@@ -36,45 +37,18 @@ export default function Page() {
           <div>
             {cart.length > 0 ? (
               cart.map((item) => (
-                <div
+                <CartCard
                   key={item.bookId}
-                  className="grid grid-cols-6 gap-4 items-center py-5 border-b"
-                >
-                  {/* Product */}
-                  <div className="col-span-2 flex gap-4 items-center">
-                    <div className="w-16 h-20 bg-gray-100 rounded-md flex items-center justify-center text-xs text-gray-400">
-                      <img src={item.image}></img>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-800">{item.title}</p>
-                      <p className="text-sm text-gray-500">{item.bookId}</p>
-                    </div>
-                  </div>
-
-                  {/* Price */}
-                  <p className="text-center text-gray-700">
-                    ${item.price ?? 0}
-                  </p>
-
-                  {/* Quantity */}
-                  <p className="text-center">{item.quantity}</p>
-
-                  {/* Total */}
-                  <p className="text-center font-medium">
-                    ${(item.price ?? 0) * item.quantity}
-                  </p>
-
-                  {/* Action */}
-                  <button
-                    onClick={() => {
-                      const updated = removeFromGuestCart(item.bookId);
-                      setCart(updated.items);
-                    }}
-                    className="text-center text-sm text-red-500 hover:underline"
-                  >
-                    Remove
-                  </button>
-                </div>
+                  bookId={item.bookId}
+                  image={item.image}
+                  title={item.title}
+                  price={item.price}
+                  quantity={item.quantity}
+                  setCart={() => {
+                    const updated = removeFromGuestCart(item.bookId);
+                    setCart(updated.items);
+                  }}
+                />
               ))
             ) : (
               <div className="flex flex-col items-center mt-20 text-gray-500">
