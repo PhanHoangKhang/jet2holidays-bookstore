@@ -1,3 +1,4 @@
+import Carousel from "@/components/Carousel";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import BookCard from "@/features/book/components/BookCard";
@@ -39,31 +40,35 @@ export default async function Home() {
       </div>
       <div className="mt-10 px-50">
         <h2 className="text-center font-bold text-3xl">New In</h2>
-        <div className="grid grid-cols-3 gap-10 mt-5">
-          {newIn.map((book: any) => (
-            <BookCard
-              key={book._id}
-              id={book._id}
-              title={book.title}
-              price={book.price}
-              image={book.image}
-            ></BookCard>
-          ))}
+        <div className="mt-5">
+          <Carousel>
+            {newIn.map((book: any) => (
+              <BookCard
+                key={book._id}
+                id={book._id}
+                title={book.title}
+                price={book.price}
+                image={book.image}
+              />
+            ))}
+          </Carousel>
         </div>
       </div>
 
       <div className="mt-10 px-50">
         <h2 className="text-center font-bold text-3xl">Best Seller</h2>
-        <div className="grid grid-cols-3 gap-10 mt-5">
-          {bestSeller.map((book: any) => (
-            <BookCard
-              key={book._id}
-              id={book._id}
-              title={book.title}
-              price={book.price}
-              image={book.image}
-            ></BookCard>
-          ))}
+        <div className="mt-5">
+          <Carousel>
+            {bestSeller.map((book: any) => (
+              <BookCard
+                key={book._id}
+                id={book._id}
+                title={book.title}
+                price={book.price}
+                image={book.image}
+              />
+            ))}
+          </Carousel>
         </div>
       </div>
       <Footer />
