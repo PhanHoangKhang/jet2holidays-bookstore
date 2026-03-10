@@ -31,7 +31,7 @@ export default function Navbar() {
 
     window.addEventListener('cartUpdated', updateCart)
 
-     return () => {
+    return () => {
       window.removeEventListener("cartUpdated", updateCart);
     };
   }, []);

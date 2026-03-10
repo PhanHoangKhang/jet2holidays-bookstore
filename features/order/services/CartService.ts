@@ -73,6 +73,7 @@ export const addGuestCart = async (
   }
 
   saveCart(cart);
+  window.dispatchEvent(new Event("cartUpdated"));
   return cart;
 };
 
@@ -81,5 +82,6 @@ export const removeFromGuestCart = (bookId: string): GuestCart => {
   cart.items = cart.items.filter((item: any) => item.bookId !== bookId);
 
   saveCart(cart);
+  window.dispatchEvent(new Event("cartUpdated"));
   return cart;
 };
