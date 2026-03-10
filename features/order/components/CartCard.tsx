@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface cartProps {
@@ -17,7 +18,7 @@ export default function CartCard({bookId, image, title, price, quantity, setCart
       {/* Product */}
       <div className="col-span-2 flex gap-4 items-center">
         <div className="w-16 h-20 bg-gray-100 rounded-md flex items-center justify-center text-xs text-gray-400">
-          <img src={image}></img>
+          <Link href={`/books/${bookId}`}><img src={image}></img></Link>
         </div>
         <div>
           <p className="font-medium text-gray-800">{title}</p>

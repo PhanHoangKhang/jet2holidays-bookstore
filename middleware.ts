@@ -21,7 +21,5 @@ export const config = {
     "/profile/:path*",
     "/checkout/:path*",
     "/admin/:path*",
-    "/auth/signin",
-    "/auth/signup",
   ],
 };

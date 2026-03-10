@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import CartCard from "@/features/order/components/CartCard";
+import CartTotal from "@/features/order/components/CartTotal";
 import {
   getGuestCart,
   removeFromGuestCart,
@@ -36,20 +37,25 @@ export default function Page() {
 
           <div>
             {cart.length > 0 ? (
-              cart.map((item) => (
-                <CartCard
-                  key={item.bookId}
-                  bookId={item.bookId}
-                  image={item.image}
-                  title={item.title}
-                  price={item.price}
-                  quantity={item.quantity}
-                  setCart={() => {
-                    const updated = removeFromGuestCart(item.bookId);
-                    setCart(updated.items);
-                  }}
-                />
-              ))
+              <>
+                {cart.map((item) => (
+                  <CartCard
+                    key={item.bookId}
+                    bookId={item.bookId}
+                    image={item.image}
+                    title={item.title}
+                    price={item.price}
+                    quantity={item.quantity}
+                    setCart={() => {
+                      const updated = removeFromGuestCart(item.bookId);
+                      setCart(updated.items);
+                    }}
+                  />
+                ))}
+                
+                <CartTotal cart={cart} />
+              </>
+              
             ) : (
               <div className="flex flex-col items-center mt-20 text-gray-500">
                 <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-3xl">
