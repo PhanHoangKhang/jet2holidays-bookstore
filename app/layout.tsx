@@ -38,9 +38,9 @@ export default function RootLayout({
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <Suspense fallback={null}>
             <Navbar />
+            {children}
+            <Footer/>
           </Suspense>
-          {children}
-          <Footer/>
         </GoogleOAuthProvider>
       </body>
     </html>
