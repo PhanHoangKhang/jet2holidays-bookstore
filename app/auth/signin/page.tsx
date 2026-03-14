@@ -46,7 +46,6 @@ export default function page() {
 
   return (
     <div>
-      <Navbar></Navbar>
       <AuthForm title="Sign In">
         <form
           className="flex flex-col gap-5"
@@ -109,7 +108,6 @@ export default function page() {
           </a>
         </p>
       </AuthForm>
-      <Footer></Footer>
     </div>
   );
 }

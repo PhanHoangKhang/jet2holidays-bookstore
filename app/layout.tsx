@@ -1,9 +1,12 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +36,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+          <Suspense fallback={null}>
+            <Navbar />
+          </Suspense>
           {children}
+          <Footer/>
         </GoogleOAuthProvider>
       </body>
     </html>

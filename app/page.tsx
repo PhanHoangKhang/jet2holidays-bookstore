@@ -16,7 +16,6 @@ export default async function Home() {
 
   return (
     <div>
-      <Navbar />
       <div className="relative w-full h-88 mt-30 px-20 overflow-hidden rounded-sm">
         <img
           src="/assets/cover.png"
@@ -71,7 +70,6 @@ export default async function Home() {
           </Carousel>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

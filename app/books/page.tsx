@@ -90,7 +90,6 @@ export default function page() {
 
   return (
     <div>
-      <Navbar></Navbar>
       <div className="flex flex-col mt-30 mx-20">
         <BookMenu></BookMenu>
         <Breadcrumb></Breadcrumb>
@@ -385,7 +384,6 @@ export default function page() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
     </div>
   );
 }

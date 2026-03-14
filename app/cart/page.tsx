@@ -22,7 +22,6 @@ export default function Page() {
 
   return (
     <div>
-      <Navbar />
       <div className="mt-30 px-25">
         <h2 className="text-center text-3xl font-semibold mb-10">Your Cart</h2>
         <Breadcrumb />
@@ -70,8 +69,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

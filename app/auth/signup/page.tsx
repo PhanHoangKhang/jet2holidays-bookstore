@@ -53,8 +53,6 @@ export default function SignUpPage() {
 
   return (
     <div>
-      <Navbar />
-
       <AuthForm title="Sign Up">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col">
@@ -115,8 +113,6 @@ export default function SignUpPage() {
           </a>
         </p>
       </AuthForm>
-
-      <Footer />
     </div>
   );
 }

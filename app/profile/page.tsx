@@ -45,7 +45,6 @@ export default function page() {
 
   return (
     <div>
-        <Navbar/>
         <div className="max-w-4xl mx-auto mt-30 px-4 min-h-[60vh] mb-5">
         <Breadcrumb/>
         {loading ? (
@@ -100,7 +99,6 @@ export default function page() {
         )}
         
         </div>
-        <Footer/>
     </div>
   )
 }

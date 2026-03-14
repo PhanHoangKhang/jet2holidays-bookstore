@@ -39,12 +39,9 @@ export default function Page() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Navbar />
-
       <div className="mt-28 px-10 lg:px-32">
         <BookMenu />
         <Breadcrumb />
-
         {loading ? (
           <p className="text-center text-xl font-semibold mt-10">Loading...</p>
         ) : (
@@ -116,8 +113,6 @@ export default function Page() {
           </div>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 }
